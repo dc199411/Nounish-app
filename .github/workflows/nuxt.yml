@@ -32,4 +32,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.DEPLOYKEY }}
-          publish_dir: ./frontend/shishiodosh/dist
+          publish_dir: ./frontend/shishiodoshi/dist
