@@ -2,9 +2,8 @@
   <div class="container">
     <div>
       <Logo />
-      <h1 class="title">
-        shishiodoshi
-      </h1>
+      <img src="images/logo.png" />
+      <h1 class="title">shishiodoshi</h1>
       <div class="links">
         <a
           href="https://nuxtjs.org/"
@@ -28,7 +27,7 @@
 </template>
 
 <script>
-export default {}
+export default {};
 </script>
 
 <style>
@@ -42,16 +41,8 @@ export default {}
 }
 
 .title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 100px;
