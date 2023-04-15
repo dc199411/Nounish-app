@@ -49,7 +49,7 @@
             <el-col :span="10">
               <img
                 class="currentchain"
-                src="@/assets/images/chain/Group_ETH.png"
+                src="@/assets/images/chain/Bar_CELO.png"
               />
             </el-col>
           </el-row>
