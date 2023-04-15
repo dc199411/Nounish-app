@@ -22,7 +22,7 @@
         <el-col :span="10">
           <img
             class="game-status"
-            src="@/assets/images/game/game-2p-start.png"
+            src="@/assets/images/game/shishistatus/LOADING1.gif"
           />
           <p>Room ID: sfasdfa</p>
         </el-col>
@@ -31,12 +31,15 @@
           <p class="wallet-disc">
             As soon as we have enough people in this room, the game begins.
           </p>
-          <div class="member-box">Jason.eth</div>
-          <div class="member-box"></div>
-          <div class="member-box member-box-gray"></div>
-          <div class="member-box member-box-gray"></div>
-          <div class="member-box member-box-gray"></div>
-          <div class="member-box member-box-gray"></div>
+
+          <div v-for="n of 6" :key="n">
+            <div v-if="n <= users.length">
+              <div class="member-box">{{ users[n - 1].address }}</div>
+            </div>
+            <div v-if="n > users.length">
+              <div class="member-box member-box-gray"></div>
+            </div>
+          </div>
 
           <el-button @click="startgame()" class="deposit-button"
             >Start Game</el-button
@@ -58,19 +61,38 @@
 // const Cookie = process.client ? require("js-cookie") : undefined;
 import MetaMaskSDK from "@metamask/sdk";
 import axios from "axios";
+// import { ethers } from "ethers";
 export default {
   data() {
-    return {};
+    return {
+      isReadyToStart: false,
+      users: [
+        {
+          address: "0xafasduhkhaskljhfasdf",
+        },
+        {
+          address: "0x34rsdfu7hkjrfffasfae",
+        },
+      ],
+      myAddress: "sss",
+    };
   },
 
   async mounted() {
-    // window.$state = this.$store.state;
+    const MMSDK = new MetaMaskSDK(this.options);
+    ethereum = MMSDK.getProvider();
+
+    // const provider = new ethers.providers.Web3Provider(window.ethereum);
+    // await provider.send("eth_requestAccounts", []);
+
+    // const signer = await provider.getSigner();
+    // this.myAddress = await signer.getAddress();
   },
 
   methods: {
     startgame() {
       axios.post(
-        "https://discord.com/api/webhooks/1096705382199599104/TxDRSqTdQ8ThTZMephDfZtbSNd3xpsjsPnDl_Z6FfI9B3mLi8q9PtuNslZlLUOjtRzqI",
+        "https://discord.com/api/webhooks/1096739070132101180/NdvquiAzxcgPomVUP-uPbSy9KxGoCQl1dsaT8Xjch3s6aTd5Sq_dMMZsI1T4OaPHEFU2",
         {
           username: "Game Streamer",
           avatar_url:
@@ -81,6 +103,7 @@ export default {
       );
       this.$router.push("/game/111/ingame");
     },
+
     async value() {},
     async login_metamask() {
       const options = {

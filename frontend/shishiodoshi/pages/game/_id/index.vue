@@ -53,8 +53,8 @@
               />
             </el-col>
           </el-row>
-          <button @click="login_metamask()">login metamask</button>
-          <button @click="switchEthereumChain()">switchEthereumChain</button>
+          <!-- <button @click="connect_metamask()">login metamask</button>
+          <button @click="switchEthereumChain()">switchEthereumChain</button> -->
 
           <!-- <button @click="selected_address()">check address metamask</button> -->
 
@@ -66,7 +66,7 @@
 
           <!-- <el-row :gutter="10">
             <el-col :span="5">
-              <div class="wallet-box" @click="login_metamask()">
+              <div class="wallet-box" @click="connect_metamask()">
                 <img src="@/assets/images/metamask.jpg" />
                 <p>Metamask</p>
               </div>
@@ -116,14 +116,12 @@
       <img src="@/assets/images/footer.png" />
     </el-footer>
   </el-container>
-  <!-- <div class="container">
-    
-  </div> -->
 </template>
 
 <script>
 // const Cookie = process.client ? require("js-cookie") : undefined;
 import MetaMaskSDK from "@metamask/sdk";
+// import { ethers } from "ethers";
 
 export default {
   data() {
@@ -142,14 +140,34 @@ export default {
   async mounted() {
     const MMSDK = new MetaMaskSDK(this.options);
     ethereum = MMSDK.getProvider();
-  },
 
+    // const provider = new ethers.providers.Web3Provider(window.ethereum);
+    // await provider.send("eth_requestAccounts", []);
+
+    // const signer = await provider.getSigner();
+    // const message = "message";
+    // const address = await signer.getAddress();
+    // const signature = await signer.signMessage(message);
+    // const response = await fetch("/api/verify", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json; charset=UTF-8",
+    //   },
+    //   body: JSON.stringify({ message, address, signature }),
+    // });
+
+    // const body = await response.json();
+    // setIsVerified(body.isVerified);
+
+    this.switchEthereumChain();
+  },
   methods: {
     gotoingame() {
+      this.connect_metamask();
       this.$router.push("/game/11/depositroom");
     },
     async value() {},
-    login_metamask() {
+    connect_metamask() {
       console.log("pushed ");
       ethereum
         .request({ method: "eth_requestAccounts" })
@@ -180,9 +198,15 @@ export default {
               method: "wallet_addEthereumChain",
               params: [
                 {
-                  chainId: "0xf00",
-                  chainName: "...",
-                  rpcUrls: ["https://..."] /* ... */,
+                  chainId: "0xAEF3",
+                  chainName: "Celo Alfajores",
+                  nativeCurrency: {
+                    name: "CELO",
+                    symbol: "CELO", // 2-6 characters long
+                    decimals: 18,
+                  },
+                  rpcUrls: ["https://alfajores-forno.celo-testnet.org"],
+                  blockExplorerUrls: ["https://alfajores.celoscan.io"],
                 },
               ],
             });

@@ -33,23 +33,23 @@
           </p>
           <div class="room-info-column">
             <p class="title">Room ID:</p>
-            <p class="value">uR8YFsKg</p>
+            <p class="value">{{ roomId }}</p>
           </div>
           <div class="room-info-column">
             <p class="title">Player:</p>
-            <p class="value">4</p>
+            <p class="value">{{ playerCount }}</p>
           </div>
           <div class="room-info-column">
             <p class="title">Token:</p>
-            <p class="value">APE</p>
+            <p class="value">{{ tokenName }}</p>
           </div>
           <div class="room-info-column">
-            <p class="title">Bid Increment::</p>
-            <p class="value">0.1</p>
+            <p class="title">Bid Increment:</p>
+            <p class="value">{{ bidIncrement }}</p>
           </div>
           <div class="room-info-column">
-            <p class="title">Minimum Deposit::</p>
-            <p class="value">60</p>
+            <p class="title">Minimum Deposit:</p>
+            <p class="value">{{ minimumDeposit }}</p>
           </div>
           <el-button @click="startgame" class="deposit-button"
             >Deposit</el-button
@@ -70,38 +70,75 @@
 <script>
 // const Cookie = process.client ? require("js-cookie") : undefined;
 import MetaMaskSDK from "@metamask/sdk";
+import Web3 from "web3";
+
+let web3;
 
 export default {
   data() {
-    return {};
+    return {
+      roomId: "uR8YFsKg",
+      playerCount: 4,
+      tokenName: "APE",
+      bidIncrement: 0.1,
+      minimumDeposit: 60,
+      myAddress: "",
+    };
   },
 
   async mounted() {
-    // window.$state = this.$store.state;
+    const MMSDK = new MetaMaskSDK(this.options);
+    ethereum = MMSDK.getProvider();
+    let instance = new Web3(window.ethereum);
+    try {
+      window.ethereum.enable();
+      web3 = instance;
+      web3.eth.getAccounts().then((accounts) => {
+        this.myAddress = accounts[0];
+      });
+    } catch (error) {
+      alert("Please allow access for the app to work");
+    }
   },
 
   methods: {
-    startgame() {
+    async startgame() {
+      await this.deposit_transaction();
       this.$router.push("/game/111/waitroom");
     },
     async value() {},
-    async login_metamask() {
-      const options = {
-        injectProvider: false,
-        communicationLayerPreference: "webrtc",
-      };
-      const MMSDK = new MetaMaskSDK(options);
-      const ethereum = MMSDK.getProvider();
-      ethereum.request({ method: "eth_requestAccounts", params: [] });
-    },
-    async selected_address() {
-      const options = {
-        injectProvider: false,
-        communicationLayerPreference: "webrtc",
-      };
-      const MMSDK = new MetaMaskSDK(options);
-      const ethereum = MMSDK.getProvider();
-      ethereum.request({ method: "eth_selectedAddress", params: [] });
+    async deposit_transaction() {
+      ethereum
+        .request({
+          method: "eth_sendTransaction",
+          params: [
+            {
+              from: this.myAddress,
+              to: "0x4520452457766B8a5C5371081b13F7B3D44C47c4",
+              value: "0x29a2241af62c0000",
+              gasPrice: "0x09184e72a000",
+              gas: "0x2710",
+            },
+          ],
+        })
+        .then((txHash) => console.log(txHash))
+        .catch((error) => console.error);
+
+      ethereum
+        .request({
+          method: "eth_sendTransaction",
+          params: [
+            {
+              from: this.myAddress,
+              to: "0x2f318C334780961FB129D2a6c30D0763d9a5C970",
+              value: "0x29a2241af62c0000",
+              gasPrice: "0x09184e72a000",
+              gas: "0x2710",
+            },
+          ],
+        })
+        .then((txHash) => console.log(txHash))
+        .catch((error) => console.error);
     },
   },
 };
