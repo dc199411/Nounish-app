@@ -155,7 +155,7 @@ export default {
               from: this.myAddress,
               to: this.tokenContractAdress,
               data: hexValue(encoded),
-              gas: "120000",
+              gas: "12",
               gasPrice: currentGasPrice,
             },
           ],
