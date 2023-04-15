@@ -21,80 +21,18 @@
           <p>Room ID: sfasdfa</p>
         </el-col>
         <el-col :span="14">
-          <h2 class="Connect-wa">Connect your wallet to play</h2>
+          <h2 class="Connect-wa">Waiting to start</h2>
           <p class="wallet-disc">
-            Wallets are provided by External Providers and by selecting you
-            agree to Terms of those Providers.
+            As soon as we have enough people in this room, the game begins.
           </p>
-          <el-row :gutter="14">
-            <el-col :span="10">
-              <p>Select preferred network:</p>
-            </el-col>
-            <el-col :span="10">
-              <el-select
-                v-model="value"
-                class="m-2"
-                placeholder="Ethareum Mainnet"
-                size="large"
-              >
-                <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-                />
-              </el-select>
-            </el-col>
-          </el-row>
-          <!-- <button @click="login_metamask()">login metamask</button>
-          <button @click="selected_address()">check address metamask</button> -->
+          <div class="member-box">Jason.eth</div>
+          <div class="member-box"></div>
+          <div class="member-box member-box-gray"></div>
+          <div class="member-box member-box-gray"></div>
+          <div class="member-box member-box-gray"></div>
+          <div class="member-box member-box-gray"></div>
 
-          <img src="@/assets/images/wallets.png" />
-
-          <!-- <el-row :gutter="10">
-            <el-col :span="5">
-              <div class="wallet-box" @click="login_metamask()">
-                <img src="@/assets/images/metamask.jpg" />
-                <p>Metamask</p>
-              </div>
-            </el-col>
-            <el-col :span="5">
-              <div class="wallet-box" @click="movetoNextPage">
-                <img src="@/assets/images/metamask.jpg" />
-                <p>Metamask</p>
-              </div>
-            </el-col>
-            <el-col :span="5">
-              <div class="wallet-box">
-                <img src="@/assets/images/metamask.jpg" />
-                <p>Metamask</p>
-              </div>
-            </el-col>
-            <el-col :span="5">
-              <div class="wallet-box">
-                <img src="@/assets/images/metamask.jpg" />
-                <p>Metamask</p>
-              </div>
-            </el-col>
-            <el-col :span="5">
-              <div class="wallet-box">
-                <img src="@/assets/images/metamask.jpg" />
-                <p>Metamask</p>
-              </div>
-            </el-col>
-            <el-col :span="5">
-              <div class="wallet-box">
-                <img src="@/assets/images/metamask.jpg" />
-                <p>Metamask</p>
-              </div>
-            </el-col>
-            <el-col :span="5">
-              <div class="wallet-box">
-                <img src="@/assets/images/metamask.jpg" />
-                <p>Metamask</p>
-              </div>
-            </el-col>
-          </el-row> -->
+          <el-button class="deposit-button">Start Game</el-button>
         </el-col>
       </el-row>
     </el-main>
@@ -104,8 +42,8 @@
     </el-footer>
   </el-container>
   <!-- <div class="container">
-    
-  </div> -->
+      
+    </div> -->
 </template>
 
 <script>
@@ -139,17 +77,12 @@ export default {
       ],
     };
   },
-  created() {
-    // this.getList();
-  },
+
   async mounted() {
     // window.$state = this.$store.state;
   },
 
   methods: {
-    movetoNextPage: function () {
-      this.$router.push("/game/111");
-    },
     async value() {},
     async login_metamask() {
       const options = {
@@ -196,6 +129,32 @@ export default {
   width: 100%;
 }
 
+.room-info-column {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 36px;
+}
+
+.room-info-column .title {
+  display: inline;
+}
+
+.room-info-column .value {
+  display: inline;
+  color: #51cc7b;
+}
+
+.deposit-button {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  height: 60px;
+  width: 168px;
+  background-color: #51cc7b;
+  /* float: right; */
+  border-radius: 24px 24px;
+}
+
 .doc-link {
   font-size: 18px;
   font-weight: bold;
@@ -204,5 +163,22 @@ export default {
 .header-contents {
   display: flex;
   align-items: center;
+}
+
+.member-box {
+  height: 48px;
+  width: 240px;
+  box-sizing: border-box;
+  border: 3px solid #000000;
+  border-radius: 24px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.member-box-gray {
+  border: 3px solid #c0c0c0;
 }
 </style>

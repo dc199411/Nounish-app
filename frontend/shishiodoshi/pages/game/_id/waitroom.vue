@@ -21,80 +21,31 @@
           <p>Room ID: sfasdfa</p>
         </el-col>
         <el-col :span="14">
-          <h2 class="Connect-wa">Connect your wallet to play</h2>
+          <h2 class="Connect-wa">Deposit and join this game</h2>
           <p class="wallet-disc">
-            Wallets are provided by External Providers and by selecting you
-            agree to Terms of those Providers.
+            Completion of Deposit is considered your game ready.
           </p>
-          <el-row :gutter="14">
-            <el-col :span="10">
-              <p>Select preferred network:</p>
-            </el-col>
-            <el-col :span="10">
-              <el-select
-                v-model="value"
-                class="m-2"
-                placeholder="Ethareum Mainnet"
-                size="large"
-              >
-                <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-                />
-              </el-select>
-            </el-col>
-          </el-row>
-          <!-- <button @click="login_metamask()">login metamask</button>
-          <button @click="selected_address()">check address metamask</button> -->
-
-          <img src="@/assets/images/wallets.png" />
-
-          <!-- <el-row :gutter="10">
-            <el-col :span="5">
-              <div class="wallet-box" @click="login_metamask()">
-                <img src="@/assets/images/metamask.jpg" />
-                <p>Metamask</p>
-              </div>
-            </el-col>
-            <el-col :span="5">
-              <div class="wallet-box" @click="movetoNextPage">
-                <img src="@/assets/images/metamask.jpg" />
-                <p>Metamask</p>
-              </div>
-            </el-col>
-            <el-col :span="5">
-              <div class="wallet-box">
-                <img src="@/assets/images/metamask.jpg" />
-                <p>Metamask</p>
-              </div>
-            </el-col>
-            <el-col :span="5">
-              <div class="wallet-box">
-                <img src="@/assets/images/metamask.jpg" />
-                <p>Metamask</p>
-              </div>
-            </el-col>
-            <el-col :span="5">
-              <div class="wallet-box">
-                <img src="@/assets/images/metamask.jpg" />
-                <p>Metamask</p>
-              </div>
-            </el-col>
-            <el-col :span="5">
-              <div class="wallet-box">
-                <img src="@/assets/images/metamask.jpg" />
-                <p>Metamask</p>
-              </div>
-            </el-col>
-            <el-col :span="5">
-              <div class="wallet-box">
-                <img src="@/assets/images/metamask.jpg" />
-                <p>Metamask</p>
-              </div>
-            </el-col>
-          </el-row> -->
+          <div class="room-info-column">
+            <p class="title">Room ID:</p>
+            <p class="value">uR8YFsKg</p>
+          </div>
+          <div class="room-info-column">
+            <p class="title">Player:</p>
+            <p class="value">4</p>
+          </div>
+          <div class="room-info-column">
+            <p class="title">Token:</p>
+            <p class="value">APE</p>
+          </div>
+          <div class="room-info-column">
+            <p class="title">Bid Increment::</p>
+            <p class="value">0.1</p>
+          </div>
+          <div class="room-info-column">
+            <p class="title">Minimum Deposit::</p>
+            <p class="value">60</p>
+          </div>
+          <el-button class="deposit-button">Deposit</el-button>
         </el-col>
       </el-row>
     </el-main>
@@ -104,8 +55,8 @@
     </el-footer>
   </el-container>
   <!-- <div class="container">
-    
-  </div> -->
+      
+    </div> -->
 </template>
 
 <script>
@@ -139,17 +90,12 @@ export default {
       ],
     };
   },
-  created() {
-    // this.getList();
-  },
+
   async mounted() {
     // window.$state = this.$store.state;
   },
 
   methods: {
-    movetoNextPage: function () {
-      this.$router.push("/game/111");
-    },
     async value() {},
     async login_metamask() {
       const options = {
@@ -194,6 +140,32 @@ export default {
 
 .footer img {
   width: 100%;
+}
+
+.room-info-column {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 36px;
+}
+
+.room-info-column .title {
+  display: inline;
+}
+
+.room-info-column .value {
+  display: inline;
+  color: #51cc7b;
+}
+
+.deposit-button {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  height: 60px;
+  width: 168px;
+  background-color: #51cc7b;
+  float: right;
+  border-radius: 24px 24px;
 }
 
 .doc-link {
