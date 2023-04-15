@@ -21,26 +21,19 @@
           <p>Room ID: sfasdfa</p>
         </el-col>
         <el-col :span="14">
-          <h2 class="Connect-wa">Gogo.eth ‘s Turn - 49s</h2>
-          <p class="wallet-disc">Choose the number of coins you want to bid</p>
-          <div class="game-member-box">
-            <div class="member-box">Jason.eth</div>
-            <div class="total-score">23</div>
-            <div class="add-score"></div>
-          </div>
-
-          <div class="game-member-box">
-            <div class="member-box">aaa.eth</div>
-            <div class="total-score">13</div>
-            <div class="add-score"></div>
-          </div>
+          <h2 class="Connect-wa">Waiting to start</h2>
+          <p class="wallet-disc">
+            As soon as we have enough people in this room, the game begins.
+          </p>
+          <div class="member-box">Jason.eth</div>
+          <div class="member-box"></div>
           <div class="member-box member-box-gray"></div>
           <div class="member-box member-box-gray"></div>
           <div class="member-box member-box-gray"></div>
           <div class="member-box member-box-gray"></div>
 
-          <el-button @click="finish()" class="deposit-button"
-            >End game</el-button
+          <el-button @click="startgame()" class="deposit-button"
+            >Start Game</el-button
           >
         </el-col>
       </el-row>
@@ -69,8 +62,8 @@ export default {
   },
 
   methods: {
-    finish() {
-      this.$router.push("/game/111/result");
+    startgame() {
+      this.$router.push("/game/111/waitroom");
     },
     async value() {},
     async login_metamask() {
@@ -152,33 +145,6 @@ export default {
 .header-contents {
   display: flex;
   align-items: center;
-}
-
-.game-member-box {
-  display: flex;
-}
-
-.member-box {
-}
-.total-score {
-  font-weight: bold;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  border: 3px solid #000000;
-  border-radius: 24px;
-  align-items: center;
-  justify-content: center;
-  margin-left: 8px;
-}
-.add-score {
-  margin-left: 8px;
-  width: 48px;
-  height: 48px;
-  align-items: center;
-  justify-content: center;
-  margin-left: 8px;
-  color: #51cc7b;
 }
 
 .member-box {

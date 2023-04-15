@@ -21,26 +21,32 @@
           <p>Room ID: sfasdfa</p>
         </el-col>
         <el-col :span="14">
-          <h2 class="Connect-wa">Gogo.eth ‘s Turn - 49s</h2>
-          <p class="wallet-disc">Choose the number of coins you want to bid</p>
-          <div class="game-member-box">
-            <div class="member-box">Jason.eth</div>
-            <div class="total-score">23</div>
-            <div class="add-score"></div>
+          <h2 class="Connect-wa">Deposit and join this game</h2>
+          <p class="wallet-disc">
+            Completion of Deposit is considered your game ready.
+          </p>
+          <div class="room-info-column">
+            <p class="title">Room ID:</p>
+            <p class="value">uR8YFsKg</p>
           </div>
-
-          <div class="game-member-box">
-            <div class="member-box">aaa.eth</div>
-            <div class="total-score">13</div>
-            <div class="add-score"></div>
+          <div class="room-info-column">
+            <p class="title">Player:</p>
+            <p class="value">4</p>
           </div>
-          <div class="member-box member-box-gray"></div>
-          <div class="member-box member-box-gray"></div>
-          <div class="member-box member-box-gray"></div>
-          <div class="member-box member-box-gray"></div>
-
-          <el-button @click="finish()" class="deposit-button"
-            >End game</el-button
+          <div class="room-info-column">
+            <p class="title">Token:</p>
+            <p class="value">APE</p>
+          </div>
+          <div class="room-info-column">
+            <p class="title">Bid Increment::</p>
+            <p class="value">0.1</p>
+          </div>
+          <div class="room-info-column">
+            <p class="title">Minimum Deposit::</p>
+            <p class="value">60</p>
+          </div>
+          <el-button @click="startgame" class="deposit-button"
+            >Deposit</el-button
           >
         </el-col>
       </el-row>
@@ -69,8 +75,8 @@ export default {
   },
 
   methods: {
-    finish() {
-      this.$router.push("/game/111/result");
+    startgame() {
+      this.$router.push("/game/111/waitroom");
     },
     async value() {},
     async login_metamask() {
@@ -140,7 +146,7 @@ export default {
   height: 60px;
   width: 168px;
   background-color: #51cc7b;
-  /* float: right; */
+  float: right;
   border-radius: 24px 24px;
 }
 
@@ -152,49 +158,5 @@ export default {
 .header-contents {
   display: flex;
   align-items: center;
-}
-
-.game-member-box {
-  display: flex;
-}
-
-.member-box {
-}
-.total-score {
-  font-weight: bold;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  border: 3px solid #000000;
-  border-radius: 24px;
-  align-items: center;
-  justify-content: center;
-  margin-left: 8px;
-}
-.add-score {
-  margin-left: 8px;
-  width: 48px;
-  height: 48px;
-  align-items: center;
-  justify-content: center;
-  margin-left: 8px;
-  color: #51cc7b;
-}
-
-.member-box {
-  height: 48px;
-  width: 240px;
-  box-sizing: border-box;
-  border: 3px solid #000000;
-  border-radius: 24px;
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-}
-
-.member-box-gray {
-  border: 3px solid #c0c0c0;
 }
 </style>

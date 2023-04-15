@@ -14,6 +14,10 @@
   margin-bottom: 80px;
 }
 
+.header .logo {
+  width: 314px;
+}
+
 .in-game img {
   width: 480px;
   margin-top: 40px;

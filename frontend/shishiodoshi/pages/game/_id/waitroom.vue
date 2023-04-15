@@ -3,7 +3,7 @@
     <el-header class="header">
       <el-row class="header-contents">
         <el-col :span="18">
-          <img src="@/assets/images/logo.png" />
+          <img class="logo" src="@/assets/images/logo.png" />
         </el-col>
         <el-col :span="3">
           <p class="doc-link">Doc</p>
@@ -21,31 +21,20 @@
           <p>Room ID: sfasdfa</p>
         </el-col>
         <el-col :span="14">
-          <h2 class="Connect-wa">Deposit and join this game</h2>
+          <h2 class="Connect-wa">Waiting to start</h2>
           <p class="wallet-disc">
-            Completion of Deposit is considered your game ready.
+            As soon as we have enough people in this room, the game begins.
           </p>
-          <div class="room-info-column">
-            <p class="title">Room ID:</p>
-            <p class="value">uR8YFsKg</p>
-          </div>
-          <div class="room-info-column">
-            <p class="title">Player:</p>
-            <p class="value">4</p>
-          </div>
-          <div class="room-info-column">
-            <p class="title">Token:</p>
-            <p class="value">APE</p>
-          </div>
-          <div class="room-info-column">
-            <p class="title">Bid Increment::</p>
-            <p class="value">0.1</p>
-          </div>
-          <div class="room-info-column">
-            <p class="title">Minimum Deposit::</p>
-            <p class="value">60</p>
-          </div>
-          <el-button class="deposit-button">Deposit</el-button>
+          <div class="member-box">Jason.eth</div>
+          <div class="member-box"></div>
+          <div class="member-box member-box-gray"></div>
+          <div class="member-box member-box-gray"></div>
+          <div class="member-box member-box-gray"></div>
+          <div class="member-box member-box-gray"></div>
+
+          <el-button @click="startgame()" class="deposit-button"
+            >Start Game</el-button
+          >
         </el-col>
       </el-row>
     </el-main>
@@ -65,30 +54,7 @@ import MetaMaskSDK from "@metamask/sdk";
 
 export default {
   data() {
-    return {
-      options: [
-        {
-          value: "Ethareum Mainnet",
-          label: "Ethareum Mainnet",
-        },
-        {
-          value: "Option2",
-          label: "Option2",
-        },
-        {
-          value: "Option3",
-          label: "Option3",
-        },
-        {
-          value: "Option4",
-          label: "Option4",
-        },
-        {
-          value: "Option5",
-          label: "Option5",
-        },
-      ],
-    };
+    return {};
   },
 
   async mounted() {
@@ -96,6 +62,9 @@ export default {
   },
 
   methods: {
+    startgame() {
+      this.$router.push("/game/111/ingame");
+    },
     async value() {},
     async login_metamask() {
       const options = {
@@ -164,7 +133,7 @@ export default {
   height: 60px;
   width: 168px;
   background-color: #51cc7b;
-  float: right;
+  /* float: right; */
   border-radius: 24px 24px;
 }
 
@@ -176,5 +145,22 @@ export default {
 .header-contents {
   display: flex;
   align-items: center;
+}
+
+.member-box {
+  height: 48px;
+  width: 240px;
+  box-sizing: border-box;
+  border: 3px solid #000000;
+  border-radius: 24px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.member-box-gray {
+  border: 3px solid #c0c0c0;
 }
 </style>

@@ -3,7 +3,7 @@
     <el-header class="header">
       <el-row class="header-contents">
         <el-col :span="18">
-          <img src="@/assets/images/logo.png" />
+          <img class="logo" src="@/assets/images/logo.png" />
         </el-col>
         <el-col :span="3">
           <p class="doc-link">Doc</p>
@@ -49,7 +49,7 @@
           <!-- <button @click="login_metamask()">login metamask</button>
           <button @click="selected_address()">check address metamask</button> -->
 
-          <img src="@/assets/images/wallets.png" />
+          <img @click="gotoingame()" src="@/assets/images/wallets.png" />
 
           <!-- <el-row :gutter="10">
             <el-col :span="5">
@@ -147,8 +147,8 @@ export default {
   },
 
   methods: {
-    movetoNextPage: function () {
-      this.$router.push("/game/111");
+    gotoingame() {
+      this.$router.push("/game/11/depositroom");
     },
     async value() {},
     async login_metamask() {
