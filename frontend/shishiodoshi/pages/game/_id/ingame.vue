@@ -19,12 +19,59 @@
     <el-main class="in-game">
       <!-- <el-row :gutter="84"> -->
       <el-row>
-        <div v-if="isGameOver"></div>
-        <div v-if="isGameOver == false">
+        <div v-if="isGameOver">
+          <h1>Finish!!</h1>
           <el-col :span="10" style="padding-top: 20px">
             <p class="token-name">Total:</p>
             <p class="total-bet">
-              {{ currentTotalBetPrice }} ({{ currentTotalBetPrice * 0.1 }})APE
+              {{ currentTotalBetPrice }} ({{
+                (currentTotalBetPrice * 0.1).toPrecision([3])
+              }})APE
+            </p>
+            <img
+              style="margin-top: 0px"
+              class="game-status"
+              src="@/assets/images/game/shishistatus/GIFOVER.gif"
+            />
+            <p>Room ID: {{ roomId }}</p>
+          </el-col>
+          <el-col :span="14">
+            <h2 class="Connect-wa">Game Over</h2>
+            <p class="wallet-disc">
+              {{ users[winUserIndex].address.substring(0, 13) }}... wins. <br />
+              All tokens bid by
+              {{ users[loseUserIndex].address.substring(0, 13) }}... are lost
+              and belong to
+              {{ users[winUserIndex].address.substring(0, 13) }}....
+            </p>
+
+            <div>
+              <div v-for="n of 6" :key="n">
+                <div v-if="n <= users.length">
+                  <div class="game-member-box">
+                    <div class="member-box">
+                      {{ users[n - 1].address.substring(0, 13) }}...
+                    </div>
+                    <div class="total-score">{{ users[n - 1].totalBet }}</div>
+                    <div class="add-score"></div>
+                  </div>
+                </div>
+                <div v-if="n > users.length">
+                  <div class="member-box member-box-gray"></div>
+                </div>
+              </div>
+            </div>
+          </el-col>
+        </div>
+        <div v-if="isGameOver == false">
+          <img class="chat-img" src="@/assets/images/game/chat_roop.gif" />
+          <el-col :span="10" style="padding-top: 20px">
+            <p class="token-name">Total:</p>
+            <p class="total-bet">
+              <!-- {{ currentTotalBetPrice }} ({{ currentTotalBetPrice * 0.1 }})APE -->
+              {{ currentTotalBetPrice }} ({{
+                (currentTotalBetPrice * 0.1).toPrecision([3])
+              }})APE
             </p>
 
             <img
@@ -68,7 +115,7 @@
             </p>
             <div v-if="users[currentUserIndex].address == myAddress">
               <div>
-                <p class="token-name">Token:　　　　</p>
+                <p class="token-name">Token:　</p>
                 <button class="allow" @click="sumBet(-1)">＜</button>
                 　{{ currentBetPrice }}　
                 <button class="allow" @click="sumBet(1)">＞</button>
@@ -251,6 +298,13 @@ export default {
       this.changeTurn();
     },
     gameOver() {
+      this.loseUserIndex = this.currentUserIndex;
+      if (this.loseUserIndex == 0) {
+        this.winUserIndex = 1;
+      } else {
+        this.winUserIndex = 0;
+      }
+
       this.isGameOver = true;
     },
     sumBet(val) {
@@ -279,9 +333,8 @@ export default {
       }
       this.currentBetPrice = Math.floor(Math.random() * 5);
 
-      this.shishiodoshiriskLevel = Math.floor(
-        (this.currentTotalBetPrice / this.maxBet) * 2
-      );
+      this.shishiodoshiriskLevel =
+        Math.floor(this.currentTotalBetPrice / (this.maxBet * 2)) + 1;
       this.bet();
     },
     changeTurn() {
@@ -440,5 +493,12 @@ export default {
 .coin-image {
   width: 216px;
   margin-left: 30px;
+}
+
+.chat-img {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 480px;
 }
 </style>
