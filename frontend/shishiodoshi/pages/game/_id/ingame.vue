@@ -242,11 +242,11 @@ export default {
       currentTurn: 1,
       users: [
         {
-          address: "0xBdAAa850Fea91345b6f1936ee7cb30D63C07eEBD",
+          address: "0xBdAAa850F1345b6f1936ee7cb30D63C07eEBD",
           totalBet: 0,
         },
         {
-          address: "0x0277fE8E6D9b0C47d20B20a7922115431f183e33",
+          address: "0x0277fE8E6D9b07d20B20a7922115431f183e33",
           totalBet: 0,
         },
       ],
@@ -290,12 +290,12 @@ export default {
     setInterval(function () {
       self.updateStatus();
     }, 5000);
-    this.bgm.play();
+    // this.bgm.play();
   },
 
   methods: {
     bet() {
-      this.betSound.play();
+      // this.betSound.play();
       this.currentTotalBetPrice =
         this.currentTotalBetPrice + this.currentBetPrice;
       this.users[this.currentUserIndex].totalBet =
@@ -333,7 +333,7 @@ export default {
       } else {
         this.winUserIndex = 0;
       }
-      this.GameoverSound.play();
+      // this.GameoverSound.play();
       this.isGameOver = true;
     },
     sumBet(val) {
