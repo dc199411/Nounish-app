@@ -46,10 +46,12 @@
               </el-select>
             </el-col>
           </el-row>
+          <button @click="login_metamask()">login metamask</button>
+          <button @click="selected_address()">check address metamask</button>
+
           <el-row :gutter="10">
-            <button @click="login_metamask()">aaaa</button>
-            <el-col :span="5" @click="login_metamask()">
-              <div class="wallet-box">
+            <el-col :span="5">
+              <div class="wallet-box" @click="login_metamask()">
                 <img src="images/metamask.jpg" />
                 <p>Metamask</p>
               </div>
@@ -150,6 +152,15 @@ export default {
       const MMSDK = new MetaMaskSDK(options);
       const ethereum = MMSDK.getProvider();
       ethereum.request({ method: "eth_requestAccounts", params: [] });
+    },
+    async selected_address() {
+      const options = {
+        injectProvider: false,
+        communicationLayerPreference: "webrtc",
+      };
+      const MMSDK = new MetaMaskSDK(options);
+      const ethereum = MMSDK.getProvider();
+      ethereum.request({ method: "eth_selectedAddress", params: [] });
     },
   },
 };
