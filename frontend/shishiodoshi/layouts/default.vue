@@ -14,11 +14,23 @@
   margin-bottom: 80px;
 }
 
+.header img {
+  width: 100%;
+}
+
+.footer {
+  margin-top: 150px;
+}
+
+.footer img {
+  width: 100%;
+}
+
 .header .logo {
   width: 314px;
 }
 
-.in-game img {
+.in-game .game-status {
   width: 480px;
   margin-top: 40px;
 }

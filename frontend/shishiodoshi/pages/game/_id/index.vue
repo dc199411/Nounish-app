@@ -1,6 +1,6 @@
 <template>
   <el-container class="container">
-    <el-header class="header">
+    <!-- <el-header class="header">
       <el-row class="header-contents">
         <el-col :span="18">
           <img class="logo" src="@/assets/images/logo.png" />
@@ -12,12 +12,21 @@
           <img src="@/assets/images/connect-wallet.png" />
         </el-col>
       </el-row>
-    </el-header>
+    </el-header> -->
+    <el-footer class="header">
+      <img src="@/assets/images/header1.png" />
+    </el-footer>
+    <el-footer class="header">
+      <img src="@/assets/images/header1.png" />
+    </el-footer>
     <el-main class="in-game">
       <!-- <el-row :gutter="84"> -->
       <el-row>
         <el-col :span="10">
-          <img src="@/assets/images/game/game-4p-start.png" />
+          <img
+            class="game-status"
+            src="@/assets/images/game/game-4p-start.png"
+          />
           <p>Room ID: sfasdfa</p>
         </el-col>
         <el-col :span="14">
@@ -26,30 +35,35 @@
             Wallets are provided by External Providers and by selecting you
             agree to Terms of those Providers.
           </p>
-          <el-row :gutter="14">
+          <el-row :gutter="14" style="display: flex; align-items: center">
             <el-col :span="10">
-              <p>Select preferred network:</p>
+              <p
+                style="
+                  font-size: 18px;
+                  font-weight: 700;
+                  line-height: 18px;
+                  letter-spacing: 0.02em;
+                  text-align: left;
+                "
+              >
+                Network used this game:
+              </p>
             </el-col>
             <el-col :span="10">
-              <el-select
-                v-model="value"
-                class="m-2"
-                placeholder="Ethareum Mainnet"
-                size="large"
-              >
-                <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-                />
-              </el-select>
+              <img
+                class="currentchain"
+                src="@/assets/images/chain/Group_ETH.png"
+              />
             </el-col>
           </el-row>
           <!-- <button @click="login_metamask()">login metamask</button>
           <button @click="selected_address()">check address metamask</button> -->
 
-          <img @click="gotoingame()" src="@/assets/images/wallets.png" />
+          <img
+            style="width: 100%"
+            @click="gotoingame()"
+            src="@/assets/images/wallets.png"
+          />
 
           <!-- <el-row :gutter="10">
             <el-col :span="5">
@@ -174,6 +188,9 @@ export default {
 </script>
 
 <style>
+.currentchain {
+  height: 36px;
+}
 .wallet-box {
   height: 120px;
   margin-bottom: 24px;
@@ -186,14 +203,6 @@ export default {
   display: block;
   margin: 0 auto;
   margin-top: 14px;
-}
-
-.footer {
-  margin-top: 150px;
-}
-
-.footer img {
-  width: 100%;
 }
 
 .doc-link {

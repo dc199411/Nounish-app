@@ -1,6 +1,6 @@
 <template>
   <el-container class="container">
-    <el-header class="header">
+    <!-- <el-header class="header">
       <el-row class="header-contents">
         <el-col :span="18">
           <img class="logo" src="@/assets/images/logo.png" />
@@ -12,12 +12,18 @@
           <img src="@/assets/images/connect-wallet.png" />
         </el-col>
       </el-row>
-    </el-header>
+    </el-header> -->
+    <el-footer class="header">
+      <img src="@/assets/images/header2.png" />
+    </el-footer>
     <el-main class="in-game">
       <!-- <el-row :gutter="84"> -->
       <el-row>
         <el-col :span="10">
-          <img src="@/assets/images/game/game-4p-start.png" />
+          <img
+            class="game-status"
+            src="@/assets/images/game/game-4p-start.png"
+          />
           <p>Room ID: sfasdfa</p>
         </el-col>
         <el-col :span="14">
