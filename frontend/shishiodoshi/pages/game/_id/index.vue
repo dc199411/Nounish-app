@@ -1,15 +1,15 @@
 <template>
   <el-container class="container">
     <el-header class="header">
-      <el-row>
+      <el-row class="header-contents">
         <el-col :span="18">
-          <img src="images/logo.png" />
+          <img src="@/assets/images/logo.png" />
         </el-col>
         <el-col :span="3">
-          <a href="https://nuxtjs.org/" target="_blank"> Doc</a>
+          <p class="doc-link">Doc</p>
         </el-col>
         <el-col :span="3">
-          <img src="images/connect-wallet.png" />
+          <img src="@/assets/images/connect-wallet.png" />
         </el-col>
       </el-row>
     </el-header>
@@ -17,7 +17,7 @@
       <!-- <el-row :gutter="84"> -->
       <el-row>
         <el-col :span="10">
-          <img src="images/game/game-4p-start.png" />
+          <img src="@/assets/images/game/game-4p-start.png" />
           <p>Room ID: sfasdfa</p>
         </el-col>
         <el-col :span="14">
@@ -53,7 +53,7 @@
     </el-main>
 
     <el-footer class="footer">
-      <img src="images/footer.png" />
+      <img src="@/assets/images/footer.png" />
     </el-footer>
   </el-container>
   <!-- <div class="container">
@@ -122,26 +122,6 @@ export default {
 </script>
 
 <style>
-.container {
-  margin: 22px 64px;
-  display: flex;
-}
-
-.header {
-  margin-bottom: 114px;
-}
-
-.in-game img {
-  width: 480px;
-}
-
-.wallet-disc {
-  margin-bottom: 80px;
-}
-
-h2.Connect-wa {
-  margin-bottom: 24px;
-}
 .wallet-box {
   height: 120px;
   margin-bottom: 24px;
@@ -188,5 +168,15 @@ h2.Connect-wa {
   background-color: #51cc7b;
   float: right;
   border-radius: 24px 24px;
+}
+
+.doc-link {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.header-contents {
+  display: flex;
+  align-items: center;
 }
 </style>

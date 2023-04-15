@@ -5,16 +5,32 @@
 </template>
 
 <style>
+.container {
+  margin: 64px;
+  display: flex;
+}
+
+.header {
+  margin-bottom: 80px;
+}
+
+.in-game img {
+  width: 480px;
+  margin-top: 40px;
+}
+
+.wallet-disc {
+  margin-bottom: 80px;
+}
+
+h2.Connect-wa {
+  margin-bottom: 24px;
+  font-size: 36px;
+}
+
 html {
-  font-family:
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
