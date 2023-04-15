@@ -98,7 +98,7 @@ export default {
   methods: {
     startgame() {
       axios.post(
-        "https://discord.com/api/webhooks/1096920196205269153/Jstcs56MczWTtXCwlTt_MofCTB8h5B3VuiwZFGXIKTUOXYndSiNeWAoIToAXNeX2afYb",
+        "https://discord.com/api/webhooks/1096937215604555847/PWoHOsYEdzzIOLKnpOe0OJ9ivXI2MJQzl2mwg5Y87VxONMNx8q_6CQlrXOWp46WGi9Iv",
         {
           username: "Game Streamer",
           avatar_url:
