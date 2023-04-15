@@ -19,105 +19,116 @@
     <el-main class="in-game">
       <!-- <el-row :gutter="84"> -->
       <el-row>
-        <el-col :span="10">
-          <img
-            class="game-status"
-            src="@/assets/images/game/game-2p-start.png"
-          />
-          <p>Room ID: {{ roomId }}</p>
-        </el-col>
-        <el-col :span="14">
-          <h2 class="Connect-wa">
-            {{ users[currentUserIndex].address.substring(0, 13) }}... ‘s Turn
-          </h2>
-          <p class="wallet-disc">Choose the number of coins you want to bid</p>
-          <div v-if="users[currentUserIndex].address == myAddress">
-            <div>
-              <p class="token-name">Token:</p>
-              <button class="allow" @click="sumBet(-1)">＜</button>
-              　{{ currentBetPrice }}　
-              <button class="allow" @click="sumBet(1)">＞</button>
+        <div v-if="isGameOver"></div>
+        <div v-if="isGameOver == false">
+          <el-col :span="10" style="padding-top: 20px">
+            <p class="token-name">Total:</p>
+            <p class="total-bet">
+              {{ currentTotalBetPrice }} ({{ currentTotalBetPrice * 0.1 }})APE
+            </p>
+
+            <img
+              style="margin-top: 0px"
+              class="game-status"
+              src="@/assets/images/game/game-2p-start.png"
+            />
+            <p>Room ID: {{ roomId }}</p>
+          </el-col>
+          <el-col :span="14">
+            <h2 class="Connect-wa">
+              {{ users[currentUserIndex].address.substring(0, 13) }}... ‘s Turn
+            </h2>
+            <p class="wallet-disc">
+              Choose the number of coins you want to bid
+            </p>
+            <div v-if="users[currentUserIndex].address == myAddress">
+              <div>
+                <p class="token-name">Token:　　　　</p>
+                <button class="allow" @click="sumBet(-1)">＜</button>
+                　{{ currentBetPrice }}　
+                <button class="allow" @click="sumBet(1)">＞</button>
+              </div>
+              <img
+                class="coin-image"
+                v-if="currentBetPrice == 0"
+                src="@/assets/images/game/Coin1.png"
+              />
+              <img
+                class="coin-image"
+                v-if="currentBetPrice == 1"
+                src="@/assets/images/game/Coin1.png"
+              />
+              <img
+                class="coin-image"
+                v-if="currentBetPrice == 2"
+                src="@/assets/images/game/Coin2.png"
+              />
+              <img
+                class="coin-image"
+                v-if="currentBetPrice == 3"
+                src="@/assets/images/game/Coin3.png"
+              />
+              <img
+                class="coin-image"
+                v-if="currentBetPrice == 4"
+                src="@/assets/images/game/Coin4.png"
+              />
+              <img
+                class="coin-image"
+                v-if="currentBetPrice == 5"
+                src="@/assets/images/game/Coin5.png"
+              />
+              <img
+                class="coin-image"
+                v-if="currentBetPrice == 6"
+                src="@/assets/images/game/Coin6.png"
+              />
+              <img
+                class="coin-image"
+                v-if="currentBetPrice == 7"
+                src="@/assets/images/game/Coin7.png"
+              />
+              <img
+                class="coin-image"
+                v-if="currentBetPrice == 8"
+                src="@/assets/images/game/Coin8.png"
+              />
+              <img
+                class="coin-image"
+                v-if="currentBetPrice == 9"
+                src="@/assets/images/game/Coin9.png"
+              />
+              <img
+                class="coin-image"
+                v-if="currentBetPrice == 10"
+                src="@/assets/images/game/Coin10.png"
+              />
+              <div style="margin-left: 40px">
+                <el-button @click="bet()" class="deposit-button">Bet</el-button>
+              </div>
             </div>
-            <img
-              class="coin-image"
-              v-if="currentBetPrice == 0"
-              src="@/assets/images/game/Coin1.png"
-            />
-            <img
-              class="coin-image"
-              v-if="currentBetPrice == 1"
-              src="@/assets/images/game/Coin1.png"
-            />
-            <img
-              class="coin-image"
-              v-if="currentBetPrice == 2"
-              src="@/assets/images/game/Coin2.png"
-            />
-            <img
-              class="coin-image"
-              v-if="currentBetPrice == 3"
-              src="@/assets/images/game/Coin3.png"
-            />
-            <img
-              class="coin-image"
-              v-if="currentBetPrice == 4"
-              src="@/assets/images/game/Coin4.png"
-            />
-            <img
-              class="coin-image"
-              v-if="currentBetPrice == 5"
-              src="@/assets/images/game/Coin5.png"
-            />
-            <img
-              class="coin-image"
-              v-if="currentBetPrice == 6"
-              src="@/assets/images/game/Coin6.png"
-            />
-            <img
-              class="coin-image"
-              v-if="currentBetPrice == 7"
-              src="@/assets/images/game/Coin7.png"
-            />
-            <img
-              class="coin-image"
-              v-if="currentBetPrice == 8"
-              src="@/assets/images/game/Coin8.png"
-            />
-            <img
-              class="coin-image"
-              v-if="currentBetPrice == 9"
-              src="@/assets/images/game/Coin9.png"
-            />
-            <img
-              class="coin-image"
-              v-if="currentBetPrice == 10"
-              src="@/assets/images/game/Coin10.png"
-            />
-            <div>
-              <el-button @click="bet()" class="deposit-button">Bet</el-button>
-            </div>
-          </div>
-          <div v-if="users[currentUserIndex].address != myAddress">
-            <div v-for="n of 6" :key="n">
-              <div v-if="n <= users.length">
-                <div class="game-member-box">
-                  <div class="member-box">
-                    {{ users[n - 1].address.substring(0, 13) }}...
+            <div v-if="users[currentUserIndex].address != myAddress">
+              <div v-for="n of 6" :key="n">
+                <div v-if="n <= users.length">
+                  <div class="game-member-box">
+                    <div class="member-box">
+                      {{ users[n - 1].address.substring(0, 13) }}...
+                    </div>
+                    <div class="total-score">{{ users[n - 1].totalBet }}</div>
+                    <div class="add-score"></div>
                   </div>
-                  <div class="total-score">{{ users[n - 1].totalBet }}</div>
-                  <div class="add-score"></div>
+                </div>
+                <div v-if="n > users.length">
+                  <div class="member-box member-box-gray"></div>
                 </div>
               </div>
-              <div v-if="n > users.length">
-                <div class="member-box member-box-gray"></div>
-              </div>
             </div>
-          </div>
 
-          <!-- <el-button @click="finish()" class="deposit-button"
+            <!-- <el-button @click="finish()" class="deposit-button"
             >End game</el-button
           > -->
-        </el-col>
+          </el-col>
+        </div>
       </el-row>
     </el-main>
     <!-- <iframe
@@ -163,7 +174,7 @@ export default {
       ],
       myAddress: "",
       currentUserIndex: 0,
-      currentBetPrice: 0,
+      currentBetPrice: 1,
       coinImagePath:
         '"@/assets/images/game/Coin' + this.currentBetPrice + '.png"',
       winUserIndex: 0,
@@ -191,28 +202,35 @@ export default {
   },
 
   async mounted() {
+    this.maxBet = Math.floor(Math.random() * 40) + 10;
     var self = this;
     setInterval(function () {
       self.updateStatus();
-    }, 3000);
+    }, 5000);
   },
 
   methods: {
     bet() {
       this.currentTotalBetPrice =
         this.currentTotalBetPrice + this.currentBetPrice;
+      this.users[this.currentUserIndex].totalBet =
+        this.users[this.currentUserIndex].totalBet + this.currentBetPrice;
+
+      if (this.users[this.currentUserIndex].totalBet > this.maxBet) {
+        this.gameOver();
+        return;
+      }
 
       this.currentTurn = this.currentTurn + 1;
-      this.currentBetPrice = 0;
-      if (this.currentUserIndex == 1) {
-        this.currentUserIndex = 0;
-      } else {
-        this.currentUserIndex = 1;
-      }
+      this.currentBetPrice = 1;
+      this.changeTurn();
+    },
+    gameOver() {
+      this.isGameOver = true;
     },
     sumBet(val) {
       console.log(val);
-      if (this.currentBetPrice == 0 && val < 0) {
+      if (this.currentBetPrice == 1 && val < 0) {
         return;
       }
       if (this.currentBetPrice == 10 && val > 0) {
@@ -221,22 +239,28 @@ export default {
       this.currentBetPrice = this.currentBetPrice + val;
     },
     updateStatus() {
-      this.users = [
-        {
-          address: "0xBdAAa850Fea91345b6f1936ee7cb30D63C07eEBD",
-          totalBet: 0,
-        },
-        {
-          address: "0x0277fE8E6D9b0C47d20B20a7922115431f183e33",
-          totalBet: 0,
-        },
-      ];
+      // this.users = [
+      //   {
+      //     address: "0xBdAAa850Fea91345b6f1936ee7cb30D63C07eEBD",
+      //     totalBet: 0,
+      //   },
+      //   {
+      //     address: "0x0277fE8E6D9b0C47d20B20a7922115431f183e33",
+      //     totalBet: 0,
+      //   },
+      // ];
       if (this.users[this.currentUserIndex].address == this.myAddress) {
         return;
       }
-      this.currentUserIndex = Math.floor(Math.random() * this.users.length);
       this.currentBetPrice = Math.floor(Math.random() * 5);
       this.bet();
+    },
+    changeTurn() {
+      if (this.currentUserIndex == 1) {
+        this.currentUserIndex = 0;
+      } else {
+        this.currentUserIndex = 1;
+      }
     },
     finish() {
       this.$router.push("/game/" + this.roomId + "/result");
@@ -367,16 +391,25 @@ export default {
 }
 
 .allow {
+  font-size: 24px;
   color: #51cc7b;
 }
 
 .token-name {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: bold;
+  display: inline;
+}
+
+.total-bet {
+  font-size: 24px;
+  font-weight: bold;
+  color: #51cc7b;
   display: inline;
 }
 
 .coin-image {
   width: 216px;
+  margin-left: 30px;
 }
 </style>
