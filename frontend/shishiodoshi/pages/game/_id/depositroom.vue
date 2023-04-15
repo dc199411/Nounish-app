@@ -111,8 +111,32 @@ export default {
 
   methods: {
     async startgame() {
-      await this.deposit_transaction();
-      this.$router.push("/game/" + this.roomId + "/waitroom");
+      await this.deposit_transaction()
+        .then(() => {
+          this.$router.push("/game/" + this.roomId + "/waitroom");
+        })
+        .catch((error) => console.error);
+    },
+    async getGasAmount(fromAddress, toAddress, amount) {
+      const gasAmount = await web3.eth.estimateGas({
+        to: toAddress,
+        from: fromAddress,
+        value: web3.utils.toWei(`${amount}`, "ether"),
+      });
+      return gasAmount;
+    },
+    async getGasAmountForContractCall(
+      fromAddress,
+      toAddress,
+      amount,
+      contractAddress,
+      abi
+    ) {
+      const contract = new web3.eth.Contract(abi, contractAddress);
+      gasAmount = await contract.methods
+        .transfer(toAddress, Web3.utils.toWei(`${amount}`))
+        .estimateGas({ from: fromAddress });
+      return gasAmount;
     },
     async value() {},
     async deposit_transaction() {
@@ -120,8 +144,10 @@ export default {
         ["address", "uint256"],
         [this.gameContractAdress, "1"]
       );
-      console.log(hexValue);
-      ethereum
+
+      let currentGasPrice = await web3.eth.getGasPrice();
+
+      await ethereum
         .request({
           method: "eth_sendTransaction",
           params: [
@@ -129,6 +155,8 @@ export default {
               from: this.myAddress,
               to: this.tokenContractAdress,
               data: hexValue(encoded),
+              gas: "120000",
+              gasPrice: currentGasPrice,
             },
           ],
         })

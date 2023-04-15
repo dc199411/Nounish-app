@@ -57,6 +57,7 @@
 <script>
 // const Cookie = process.client ? require("js-cookie") : undefined;
 import MetaMaskSDK from "@metamask/sdk";
+import Web3 from "web3";
 
 export default {
   data() {
@@ -71,7 +72,7 @@ export default {
 
   methods: {
     startgame() {
-      this.$router.push("/game/111/waitroom");
+      this.$router.push("/game/" + this.roomId + "/waitroom");
     },
     async value() {},
     async login_metamask() {
