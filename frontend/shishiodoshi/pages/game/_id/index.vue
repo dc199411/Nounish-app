@@ -16,9 +16,6 @@
     <el-footer class="header">
       <img src="@/assets/images/header1.png" />
     </el-footer>
-    <el-footer class="header">
-      <img src="@/assets/images/header1.png" />
-    </el-footer>
     <el-main class="in-game">
       <!-- <el-row :gutter="84"> -->
       <el-row>

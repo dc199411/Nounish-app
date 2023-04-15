@@ -27,7 +27,7 @@
           <p>Room ID: sfasdfa</p>
         </el-col>
         <el-col :span="14">
-          <h2 class="Connect-wa">Gogo.eth ‘s Turn - 49s</h2>
+          <h2 class="Connect-wa">Gogo.eth ‘s Turn</h2>
           <p class="wallet-disc">Choose the number of coins you want to bid</p>
           <div class="game-member-box">
             <div class="member-box">Jason.eth</div>
@@ -51,6 +51,14 @@
         </el-col>
       </el-row>
     </el-main>
+    <iframe
+      src="https://discord.com/widget?id=1095996892074225695&theme=dark"
+      width="350"
+      height="500"
+      allowtransparency="true"
+      frameborder="0"
+      sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+    ></iframe>
 
     <el-footer class="footer">
       <img src="@/assets/images/footer.png" />

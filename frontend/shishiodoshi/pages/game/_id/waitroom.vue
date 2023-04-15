@@ -57,7 +57,7 @@
 <script>
 // const Cookie = process.client ? require("js-cookie") : undefined;
 import MetaMaskSDK from "@metamask/sdk";
-
+import axios from "axios";
 export default {
   data() {
     return {};
@@ -69,6 +69,16 @@ export default {
 
   methods: {
     startgame() {
+      axios.post(
+        "https://discord.com/api/webhooks/1096705382199599104/TxDRSqTdQ8ThTZMephDfZtbSNd3xpsjsPnDl_Z6FfI9B3mLi8q9PtuNslZlLUOjtRzqI",
+        {
+          username: "Game Streamer",
+          avatar_url:
+            "http://localhost:3000/_nuxt/assets/images/game/game-4p-start.png",
+          content:
+            "😎 gamestart!!! \r https://shishiodoshi-app-k22f.vercel.app/_nuxt/img/game-4p-start.f825b8e.png \r Let's join to the game from link below 😎 \r https://shishiodoshi-app-k22f.vercel.app/game/111/",
+        }
+      );
       this.$router.push("/game/111/ingame");
     },
     async value() {},
