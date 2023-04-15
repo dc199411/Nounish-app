@@ -176,7 +176,12 @@
                 src="@/assets/images/game/Coin10.png"
               />
               <div style="margin-left: 40px">
-                <el-button @click="bet()" class="deposit-button">Bet</el-button>
+                <el-button
+                  style="float: left"
+                  @click="bet()"
+                  class="deposit-button"
+                  >Bet</el-button
+                >
               </div>
             </div>
             <div v-if="users[currentUserIndex].address != myAddress">
@@ -304,9 +309,9 @@ export default {
             this.users[this.currentUserIndex].address +
             " bet " +
             this.currentBetPrice +
-            " coin!! \r https://shishiodoshi-app-k22f.vercel.app/_nuxt/img/game/Coin" +
+            " coin!! \r https://shishiodoshi-app-k22f.vercel.app/_nuxt/img/GIF0" +
             this.shishiodoshiriskLevel +
-            "png",
+            ".gif",
         }
       );
 
