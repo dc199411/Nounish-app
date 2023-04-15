@@ -89,7 +89,7 @@ export default {
       bidIncrement: 0.1,
       minimumDeposit: 60,
       myAddress: "",
-      gameContractAdress: "0x83f72770198C760247FCd30fF51bE80E02e666EB",
+      gameContractAdress: "0xd8496B7CEa1844A6097351DA3ADd39560bf1B8Ea",
       tokenContractAdress: "0x4520452457766B8a5C5371081b13F7B3D44C47c4",
     };
   },
@@ -142,7 +142,7 @@ export default {
     async deposit_transaction() {
       const encoded = coder.encode(
         ["address", "uint256"],
-        [this.gameContractAdress, "1"]
+        [this.gameContractAdress, "100000"]
       );
 
       let currentGasPrice = await web3.eth.getGasPrice();
@@ -155,7 +155,7 @@ export default {
               from: this.myAddress,
               to: this.tokenContractAdress,
               data: hexValue(encoded),
-              gas: "12",
+              gas: "120000",
               gasPrice: currentGasPrice,
             },
           ],

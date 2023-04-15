@@ -261,6 +261,10 @@ export default {
       maxBet: 20,
       userBets: [0, 0],
       isGameOver: false,
+      bgm: new Audio("@/assets/sound/BGM.mp3"),
+      betSound: new Audio("@/assets/sound/Bid.mp3"),
+      GameoverSound: new Audio("@/assets/sound/Gameover.mp3"),
+      turnchangeSound: new Audio("@/assets/sound/YourTurn.mp3"),
     };
   },
 
@@ -273,6 +277,7 @@ export default {
       web3 = instance;
       web3.eth.getAccounts().then((accounts) => {
         this.myAddress = accounts[0];
+        this.users[0].address = this.myAddress;
       });
     } catch (error) {
       alert("Please allow access for the app to work");
@@ -285,10 +290,12 @@ export default {
     setInterval(function () {
       self.updateStatus();
     }, 5000);
+    this.bgm.play();
   },
 
   methods: {
     bet() {
+      this.betSound.play();
       this.currentTotalBetPrice =
         this.currentTotalBetPrice + this.currentBetPrice;
       this.users[this.currentUserIndex].totalBet =
@@ -300,7 +307,7 @@ export default {
       }
 
       axios.post(
-        "https://discord.com/api/webhooks/1096798394934116403/xa25g0k56x17vH35EaZFGK-ifvWoNULT8WGtJ5BZVz3Bjd8-LTuwXBmtEpY2wwhtJpqG",
+        "https://discord.com/api/webhooks/1096919500001116310/4cIs9llLW3Ibp6Th5bANWENx9rDSB7KgCYWIWBhE2YPXIgn0i3aMB0QAYKxgvQ3e3AIf",
         {
           username: "Game Streamer",
           avatar_url:
@@ -326,7 +333,7 @@ export default {
       } else {
         this.winUserIndex = 0;
       }
-
+      this.GameoverSound.play();
       this.isGameOver = true;
     },
     sumBet(val) {
