@@ -47,7 +47,8 @@
             </el-col>
           </el-row>
           <el-row :gutter="10">
-            <el-col :span="5">
+            <button @click="login_metamask()">aaaa</button>
+            <el-col :span="5" @click="login_metamask()">
               <div class="wallet-box">
                 <img src="images/metamask.jpg" />
                 <p>Metamask</p>
@@ -109,28 +110,30 @@ import MetaMaskSDK from "@metamask/sdk";
 
 export default {
   data() {
-    return [
-      {
-        value: "Ethareum Mainnet",
-        label: "Ethareum Mainnet",
-      },
-      {
-        value: "Option2",
-        label: "Option2",
-      },
-      {
-        value: "Option3",
-        label: "Option3",
-      },
-      {
-        value: "Option4",
-        label: "Option4",
-      },
-      {
-        value: "Option5",
-        label: "Option5",
-      },
-    ];
+    return {
+      options: [
+        {
+          value: "Ethareum Mainnet",
+          label: "Ethareum Mainnet",
+        },
+        {
+          value: "Option2",
+          label: "Option2",
+        },
+        {
+          value: "Option3",
+          label: "Option3",
+        },
+        {
+          value: "Option4",
+          label: "Option4",
+        },
+        {
+          value: "Option5",
+          label: "Option5",
+        },
+      ],
+    };
   },
 
   async mounted() {
@@ -138,7 +141,12 @@ export default {
   },
 
   methods: {
-    async login() {
+    async value() {},
+    async login_metamask() {
+      const options = {
+        injectProvider: false,
+        communicationLayerPreference: "webrtc",
+      };
       const MMSDK = new MetaMaskSDK(options);
       const ethereum = MMSDK.getProvider();
       ethereum.request({ method: "eth_requestAccounts", params: [] });
