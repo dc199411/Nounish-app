@@ -289,7 +289,7 @@ export default {
     var self = this;
     setInterval(function () {
       self.updateStatus();
-    }, 5000);
+    }, 7000);
     // this.bgm.play();
   },
 
@@ -306,8 +306,12 @@ export default {
         return;
       }
 
+      this.currentTurn = this.currentTurn + 1;
+      this.currentBetPrice = 1;
+      this.changeTurn();
+
       axios.post(
-        "https://discord.com/api/webhooks/1096919500001116310/4cIs9llLW3Ibp6Th5bANWENx9rDSB7KgCYWIWBhE2YPXIgn0i3aMB0QAYKxgvQ3e3AIf",
+        "https://discord.com/api/webhooks/1096936637201649665/sdZBdX3skOCwoxzdtJZYw4HAe8GHVJpMkwpgNbOsFxR10meFNAOhsUJ4mbSo4a6PrOnT",
         {
           username: "Game Streamer",
           avatar_url:
@@ -321,10 +325,6 @@ export default {
             ".gif",
         }
       );
-
-      this.currentTurn = this.currentTurn + 1;
-      this.currentBetPrice = 1;
-      this.changeTurn();
     },
     gameOver() {
       this.loseUserIndex = this.currentUserIndex;
