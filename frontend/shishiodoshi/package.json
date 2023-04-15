@@ -9,6 +9,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@metamask/sdk": "^0.1.0",
     "core-js": "^3.8.3",
     "element-ui": "^2.13.2",
     "nuxt": "^2.14.12"

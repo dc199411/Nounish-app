@@ -103,33 +103,48 @@
   </div> -->
 </template>
 
-<script lang="ts" setup>
-import { ref } from "vue";
+<script>
+// const Cookie = process.client ? require("js-cookie") : undefined;
+import MetaMaskSDK from "@metamask/sdk";
 
-const value = ref("");
+export default {
+  data() {
+    return [
+      {
+        value: "Ethareum Mainnet",
+        label: "Ethareum Mainnet",
+      },
+      {
+        value: "Option2",
+        label: "Option2",
+      },
+      {
+        value: "Option3",
+        label: "Option3",
+      },
+      {
+        value: "Option4",
+        label: "Option4",
+      },
+      {
+        value: "Option5",
+        label: "Option5",
+      },
+    ];
+  },
 
-const options = [
-  {
-    value: "Ethareum Mainnet",
-    label: "Ethareum Mainnet",
+  async mounted() {
+    // window.$state = this.$store.state;
   },
-  {
-    value: "Option2",
-    label: "Option2",
+
+  methods: {
+    async login() {
+      const MMSDK = new MetaMaskSDK(options);
+      const ethereum = MMSDK.getProvider();
+      ethereum.request({ method: "eth_requestAccounts", params: [] });
+    },
   },
-  {
-    value: "Option3",
-    label: "Option3",
-  },
-  {
-    value: "Option4",
-    label: "Option4",
-  },
-  {
-    value: "Option5",
-    label: "Option5",
-  },
-];
+};
 </script>
 
 <style>
