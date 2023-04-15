@@ -30,7 +30,32 @@
             <img
               style="margin-top: 0px"
               class="game-status"
-              src="@/assets/images/game/game-2p-start.png"
+              v-if="shishiodoshiriskLevel == 0"
+              src="@/assets/images/game/shishistatus/GIF00.gif"
+            />
+            <img
+              style="margin-top: 0px"
+              class="game-status"
+              v-if="shishiodoshiriskLevel == 1"
+              src="@/assets/images/game/shishistatus/GIF01.gif"
+            />
+            <img
+              style="margin-top: 0px"
+              class="game-status"
+              v-if="shishiodoshiriskLevel == 2"
+              src="@/assets/images/game/shishistatus/GIF02.gif"
+            />
+            <img
+              style="margin-top: 0px"
+              class="game-status"
+              v-if="shishiodoshiriskLevel == 3"
+              src="@/assets/images/game/shishistatus/GIF03.gif"
+            />
+            <img
+              style="margin-top: 0px"
+              class="game-status"
+              v-if="shishiodoshiriskLevel == 4"
+              src="@/assets/images/game/shishistatus/GIF04.gif"
             />
             <p>Room ID: {{ roomId }}</p>
           </el-col>
@@ -160,7 +185,7 @@ export default {
       roomId: this.$route.params.id,
       gamestateList: ["start", "ingame", "finish"],
       currentGamestate: "start",
-      shishiodoshirisk: [],
+      shishiodoshiriskLevel: 0,
       currentTurn: 1,
       users: [
         {
@@ -253,6 +278,10 @@ export default {
         return;
       }
       this.currentBetPrice = Math.floor(Math.random() * 5);
+
+      this.shishiodoshiriskLevel = Math.floor(
+        (this.currentTotalBetPrice / this.maxBet) * 2
+      );
       this.bet();
     },
     changeTurn() {
