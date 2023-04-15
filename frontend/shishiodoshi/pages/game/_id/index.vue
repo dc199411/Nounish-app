@@ -122,6 +122,7 @@ import Web3 from "web3";
 export default {
   data() {
     return {
+      roomId: this.$route.params.id,
       metamaskoptions: {
         injectProvider: false,
         communicationLayerPreference: "webrtc",
@@ -150,7 +151,7 @@ export default {
   methods: {
     gotoingame() {
       this.connect_metamask();
-      this.$router.push("/game/11/depositroom");
+      this.$router.push("/game/" + this.roomId + "/depositroom");
     },
     async value() {},
     connect_metamask() {

@@ -66,6 +66,7 @@ import Web3 from "web3";
 export default {
   data() {
     return {
+      roomId: this.$route.params.id,
       isReadyToStart: false,
       users: [
         {
@@ -106,7 +107,7 @@ export default {
             "😎 gamestart!!! \r https://shishiodoshi-app-k22f.vercel.app/_nuxt/img/game-4p-start.f825b8e.png \r Let's join to the game from link below 😎 \r https://shishiodoshi-app-k22f.vercel.app/game/111/",
         }
       );
-      this.$router.push("/game/111/ingame");
+      this.$router.push("/game/" + this.roomId + "/ingame");
     },
 
     async value() {},

@@ -24,7 +24,7 @@
             class="game-status"
             src="@/assets/images/game/game-2p-start.png"
           />
-          <p>Room ID: sfasdfa</p>
+          <p>Room ID: {{ roomId }}</p>
         </el-col>
         <el-col :span="14">
           <h2 class="Connect-wa">Deposit and join this game</h2>
@@ -83,8 +83,8 @@ let web3;
 export default {
   data() {
     return {
-      roomId: "uR8YFsKg",
-      playerCount: 4,
+      roomId: this.$route.params.id,
+      playerCount: 2,
       tokenName: "APE",
       bidIncrement: 0.1,
       minimumDeposit: 60,
@@ -112,7 +112,7 @@ export default {
   methods: {
     async startgame() {
       await this.deposit_transaction();
-      this.$router.push("/game/111/waitroom");
+      this.$router.push("/game/" + this.roomId + "/waitroom");
     },
     async value() {},
     async deposit_transaction() {

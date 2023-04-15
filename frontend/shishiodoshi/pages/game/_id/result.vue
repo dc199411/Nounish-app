@@ -60,7 +60,9 @@ import MetaMaskSDK from "@metamask/sdk";
 
 export default {
   data() {
-    return {};
+    return {
+      roomId: this.$route.params.id,
+    };
   },
 
   async mounted() {

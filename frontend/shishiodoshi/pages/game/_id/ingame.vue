@@ -80,6 +80,7 @@ import MetaMaskSDK from "@metamask/sdk";
 export default {
   data() {
     return {
+      roomId: this.$route.params.id,
       gamestateList: ["start", "ingame", "finish"],
       currentGamestate: "start",
       shishiodoshirisk: [],
@@ -118,7 +119,7 @@ export default {
       this.currentTurn = this.currentTurn + 1;
     },
     finish() {
-      this.$router.push("/game/111/result");
+      this.$router.push("/game/" + this.roomId + "/result");
     },
     async login_metamask() {
       const options = {
