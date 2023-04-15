@@ -114,6 +114,8 @@ export default {
     bet() {
       this.currentTotalBetPrice =
         this.currentTotalBetPrice + this.currentBetPrice;
+
+      this.currentTurn = this.currentTurn + 1;
     },
     finish() {
       this.$router.push("/game/111/result");

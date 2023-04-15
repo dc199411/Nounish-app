@@ -53,10 +53,6 @@
               />
             </el-col>
           </el-row>
-          <!-- <button @click="connect_metamask()">login metamask</button>
-          <button @click="switchEthereumChain()">switchEthereumChain</button> -->
-
-          <!-- <button @click="selected_address()">check address metamask</button> -->
 
           <img
             style="width: 100%"
@@ -121,7 +117,7 @@
 <script>
 // const Cookie = process.client ? require("js-cookie") : undefined;
 import MetaMaskSDK from "@metamask/sdk";
-// import { ethers } from "ethers";
+import Web3 from "web3";
 
 export default {
   data() {
@@ -134,32 +130,22 @@ export default {
       shishiodoshirisk: [],
     };
   },
-  created() {
-    // this.getList();
-  },
+  created() {},
   async mounted() {
     const MMSDK = new MetaMaskSDK(this.options);
     ethereum = MMSDK.getProvider();
+    let instance = new Web3(window.ethereum);
+    try {
+      window.ethereum.enable();
+      web3 = instance;
+      web3.eth.getAccounts().then((accounts) => {
+        this.myAddress = accounts[0];
+      });
+    } catch (error) {
+      alert("Please allow access for the app to work");
+    }
 
-    // const provider = new ethers.providers.Web3Provider(window.ethereum);
-    // await provider.send("eth_requestAccounts", []);
-
-    // const signer = await provider.getSigner();
-    // const message = "message";
-    // const address = await signer.getAddress();
-    // const signature = await signer.signMessage(message);
-    // const response = await fetch("/api/verify", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json; charset=UTF-8",
-    //   },
-    //   body: JSON.stringify({ message, address, signature }),
-    // });
-
-    // const body = await response.json();
-    // setIsVerified(body.isVerified);
-
-    this.switchEthereumChain();
+    await this.switchEthereumChain();
   },
   methods: {
     gotoingame() {
@@ -180,9 +166,6 @@ export default {
             console.error(error);
           }
         });
-    },
-    selected_address() {
-      ethereum.request({ method: "eth_selectedAddress", params: [] });
     },
     async switchEthereumChain() {
       try {

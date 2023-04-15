@@ -61,7 +61,8 @@
 // const Cookie = process.client ? require("js-cookie") : undefined;
 import MetaMaskSDK from "@metamask/sdk";
 import axios from "axios";
-// import { ethers } from "ethers";
+import Web3 from "web3";
+
 export default {
   data() {
     return {
@@ -74,19 +75,23 @@ export default {
           address: "0x34rsdfu7hkjrfffasfae",
         },
       ],
-      myAddress: "sss",
+      myAddress: "",
     };
   },
 
   async mounted() {
     const MMSDK = new MetaMaskSDK(this.options);
     ethereum = MMSDK.getProvider();
-
-    // const provider = new ethers.providers.Web3Provider(window.ethereum);
-    // await provider.send("eth_requestAccounts", []);
-
-    // const signer = await provider.getSigner();
-    // this.myAddress = await signer.getAddress();
+    let instance = new Web3(window.ethereum);
+    try {
+      window.ethereum.enable();
+      web3 = instance;
+      web3.eth.getAccounts().then((accounts) => {
+        this.myAddress = accounts[0];
+      });
+    } catch (error) {
+      alert("Please allow access for the app to work");
+    }
   },
 
   methods: {

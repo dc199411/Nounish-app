@@ -71,6 +71,12 @@
 // const Cookie = process.client ? require("js-cookie") : undefined;
 import MetaMaskSDK from "@metamask/sdk";
 import Web3 from "web3";
+import { AbiCoder, hexValue } from "ethers/lib/utils";
+
+const coder = new AbiCoder();
+
+// import { encode } from "@metamask/abi-utils";
+// import { bytesToHex } from "@metamask/utils";
 
 let web3;
 
@@ -83,6 +89,8 @@ export default {
       bidIncrement: 0.1,
       minimumDeposit: 60,
       myAddress: "",
+      gameContractAdress: "0x83f72770198C760247FCd30fF51bE80E02e666EB",
+      tokenContractAdress: "0x4520452457766B8a5C5371081b13F7B3D44C47c4",
     };
   },
 
@@ -108,32 +116,19 @@ export default {
     },
     async value() {},
     async deposit_transaction() {
+      const encoded = coder.encode(
+        ["address", "uint256"],
+        [this.gameContractAdress, "1"]
+      );
+      console.log(hexValue);
       ethereum
         .request({
           method: "eth_sendTransaction",
           params: [
             {
               from: this.myAddress,
-              to: "0x4520452457766B8a5C5371081b13F7B3D44C47c4",
-              value: "0x29a2241af62c0000",
-              gasPrice: "0x09184e72a000",
-              gas: "0x2710",
-            },
-          ],
-        })
-        .then((txHash) => console.log(txHash))
-        .catch((error) => console.error);
-
-      ethereum
-        .request({
-          method: "eth_sendTransaction",
-          params: [
-            {
-              from: this.myAddress,
-              to: "0x2f318C334780961FB129D2a6c30D0763d9a5C970",
-              value: "0x29a2241af62c0000",
-              gasPrice: "0x09184e72a000",
-              gas: "0x2710",
+              to: this.tokenContractAdress,
+              data: hexValue(encoded),
             },
           ],
         })
