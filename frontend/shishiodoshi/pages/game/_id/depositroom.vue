@@ -22,7 +22,7 @@
         <el-col :span="10">
           <img
             class="game-status"
-            src="@/assets/images/game/game-4p-start.png"
+            src="@/assets/images/game/game-2p-start.png"
           />
           <p>Room ID: sfasdfa</p>
         </el-col>

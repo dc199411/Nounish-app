@@ -22,28 +22,32 @@
         <el-col :span="10">
           <img
             class="game-status"
-            src="@/assets/images/game/game-4p-start.png"
+            src="@/assets/images/game/game-2p-start.png"
           />
           <p>Room ID: sfasdfa</p>
         </el-col>
         <el-col :span="14">
-          <h2 class="Connect-wa">Gogo.eth ‘s Turn</h2>
-          <p class="wallet-disc">Choose the number of coins you want to bid</p>
-          <div class="game-member-box">
-            <div class="member-box">Jason.eth</div>
-            <div class="total-score">23</div>
-            <div class="add-score"></div>
+          <div v-if="currentUserIndex == myAddress"></div>
+          <div v-if="currentUserIndex != myAddress">
+            <h2 class="Connect-wa">
+              {{ users[currentUserIndex].address }} ‘s Turn
+            </h2>
+            <p class="wallet-disc">
+              Choose the number of coins you want to bid
+            </p>
+            <div v-for="n of 6" :key="n">
+              <div v-if="n <= users.length">
+                <div class="game-member-box">
+                  <div class="member-box">{{ users[n - 1].address }}</div>
+                  <div class="total-score">{{ users[n - 1].totalBet }}</div>
+                  <div class="add-score"></div>
+                </div>
+              </div>
+              <div v-if="n > users.length">
+                <div class="member-box member-box-gray"></div>
+              </div>
+            </div>
           </div>
-
-          <div class="game-member-box">
-            <div class="member-box">aaa.eth</div>
-            <div class="total-score">13</div>
-            <div class="add-score"></div>
-          </div>
-          <div class="member-box member-box-gray"></div>
-          <div class="member-box member-box-gray"></div>
-          <div class="member-box member-box-gray"></div>
-          <div class="member-box member-box-gray"></div>
 
           <el-button @click="finish()" class="deposit-button"
             >End game</el-button
@@ -75,7 +79,31 @@ import MetaMaskSDK from "@metamask/sdk";
 
 export default {
   data() {
-    return {};
+    return {
+      gamestateList: ["start", "ingame", "finish"],
+      currentGamestate: "start",
+      shishiodoshirisk: [],
+      currentTurn: 1,
+      users: [
+        {
+          address: "0xafasduhkhaskljhfasdf",
+          totalBet: 0,
+        },
+        {
+          address: "0x34rsdfu7hkjrfffasfae",
+          totalBet: 0,
+        },
+      ],
+      myAddress: "sss",
+      currentUserIndex: 0,
+      currentBetPrice: 0,
+      winUserIndex: 0,
+      loseUserIndex: 0,
+      currentTotalBetPrice: 0,
+      maxBet: 0,
+      userBets: [0, 0],
+      isGameOver: false,
+    };
   },
 
   async mounted() {
@@ -83,10 +111,13 @@ export default {
   },
 
   methods: {
+    bet() {
+      this.currentTotalBetPrice =
+        this.currentTotalBetPrice + this.currentBetPrice;
+    },
     finish() {
       this.$router.push("/game/111/result");
     },
-    async value() {},
     async login_metamask() {
       const options = {
         injectProvider: false,

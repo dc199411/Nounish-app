@@ -22,7 +22,7 @@
         <el-col :span="10">
           <img
             class="game-status"
-            src="@/assets/images/game/game-4p-start.png"
+            src="@/assets/images/game/game-2p-start.png"
           />
           <p>Room ID: sfasdfa</p>
         </el-col>
@@ -74,7 +74,7 @@ export default {
         {
           username: "Game Streamer",
           avatar_url:
-            "http://localhost:3000/_nuxt/assets/images/game/game-4p-start.png",
+            "http://localhost:3000/_nuxt/assets/images/game/game-2p-start.png",
           content:
             "😎 gamestart!!! \r https://shishiodoshi-app-k22f.vercel.app/_nuxt/img/game-4p-start.f825b8e.png \r Let's join to the game from link below 😎 \r https://shishiodoshi-app-k22f.vercel.app/game/111/",
         }

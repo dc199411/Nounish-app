@@ -22,7 +22,7 @@
         <el-col :span="10">
           <img
             class="game-status"
-            src="@/assets/images/game/game-4p-start.png"
+            src="@/assets/images/game/game-2p-start.png"
           />
           <p>Room ID: sfasdfa</p>
         </el-col>
@@ -53,8 +53,10 @@
               />
             </el-col>
           </el-row>
-          <!-- <button @click="login_metamask()">login metamask</button>
-          <button @click="selected_address()">check address metamask</button> -->
+          <button @click="login_metamask()">login metamask</button>
+          <button @click="switchEthereumChain()">switchEthereumChain</button>
+
+          <!-- <button @click="selected_address()">check address metamask</button> -->
 
           <img
             style="width: 100%"
@@ -126,35 +128,20 @@ import MetaMaskSDK from "@metamask/sdk";
 export default {
   data() {
     return {
-      options: [
-        {
-          value: "Ethareum Mainnet",
-          label: "Ethareum Mainnet",
-        },
-        {
-          value: "Option2",
-          label: "Option2",
-        },
-        {
-          value: "Option3",
-          label: "Option3",
-        },
-        {
-          value: "Option4",
-          label: "Option4",
-        },
-        {
-          value: "Option5",
-          label: "Option5",
-        },
-      ],
+      metamaskoptions: {
+        injectProvider: false,
+        communicationLayerPreference: "webrtc",
+      },
+      ethereum: {},
+      shishiodoshirisk: [],
     };
   },
   created() {
     // this.getList();
   },
   async mounted() {
-    // window.$state = this.$store.state;
+    const MMSDK = new MetaMaskSDK(this.options);
+    ethereum = MMSDK.getProvider();
   },
 
   methods: {
@@ -162,23 +149,49 @@ export default {
       this.$router.push("/game/11/depositroom");
     },
     async value() {},
-    async login_metamask() {
-      const options = {
-        injectProvider: false,
-        communicationLayerPreference: "webrtc",
-      };
-      const MMSDK = new MetaMaskSDK(options);
-      const ethereum = MMSDK.getProvider();
-      ethereum.request({ method: "eth_requestAccounts", params: [] });
+    login_metamask() {
+      console.log("pushed ");
+      ethereum
+        .request({ method: "eth_requestAccounts" })
+        // .then(handleAccountsChanged)
+        .catch((error) => {
+          if (error.code === 4001) {
+            // EIP-1193 userRejectedRequest error
+            console.log("Please connect to MetaMask.");
+          } else {
+            console.error(error);
+          }
+        });
     },
-    async selected_address() {
-      const options = {
-        injectProvider: false,
-        communicationLayerPreference: "webrtc",
-      };
-      const MMSDK = new MetaMaskSDK(options);
-      const ethereum = MMSDK.getProvider();
+    selected_address() {
       ethereum.request({ method: "eth_selectedAddress", params: [] });
+    },
+    async switchEthereumChain() {
+      try {
+        await ethereum.request({
+          method: "wallet_switchEthereumChain",
+          params: [{ chainId: "0xf00" }],
+        });
+      } catch (switchError) {
+        // This error code indicates that the chain has not been added to MetaMask.
+        if (switchError.code === 4902) {
+          try {
+            await ethereum.request({
+              method: "wallet_addEthereumChain",
+              params: [
+                {
+                  chainId: "0xf00",
+                  chainName: "...",
+                  rpcUrls: ["https://..."] /* ... */,
+                },
+              ],
+            });
+          } catch (addError) {
+            // handle "add" error
+          }
+        }
+        // handle other "switch" errors
+      }
     },
   },
 };
