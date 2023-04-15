@@ -225,6 +225,7 @@
 // const Cookie = process.client ? require("js-cookie") : undefined;
 import MetaMaskSDK from "@metamask/sdk";
 import Web3 from "web3";
+import axios from "axios";
 
 export default {
   data() {
@@ -293,6 +294,22 @@ export default {
         return;
       }
 
+      axios.post(
+        "https://discord.com/api/webhooks/1096798394934116403/xa25g0k56x17vH35EaZFGK-ifvWoNULT8WGtJ5BZVz3Bjd8-LTuwXBmtEpY2wwhtJpqG",
+        {
+          username: "Game Streamer",
+          avatar_url:
+            "https://shishiodoshi-app-k22f.vercel.app/_nuxt/img/game-4p-start.f825b8e.png",
+          content:
+            this.users[this.currentUserIndex].address +
+            " bet " +
+            this.currentBetPrice +
+            " coin!! \r https://shishiodoshi-app-k22f.vercel.app/_nuxt/img/game/Coin" +
+            this.shishiodoshiriskLevel +
+            "png",
+        }
+      );
+
       this.currentTurn = this.currentTurn + 1;
       this.currentBetPrice = 1;
       this.changeTurn();
@@ -331,7 +348,7 @@ export default {
       if (this.users[this.currentUserIndex].address == this.myAddress) {
         return;
       }
-      this.currentBetPrice = Math.floor(Math.random() * 5);
+      this.currentBetPrice = Math.floor(Math.random() * 7) + 2;
 
       this.shishiodoshiriskLevel =
         Math.floor(this.currentTotalBetPrice / (this.maxBet * 2)) + 1;

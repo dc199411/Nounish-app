@@ -98,11 +98,11 @@ export default {
   methods: {
     startgame() {
       axios.post(
-        "https://discord.com/api/webhooks/1096739070132101180/NdvquiAzxcgPomVUP-uPbSy9KxGoCQl1dsaT8Xjch3s6aTd5Sq_dMMZsI1T4OaPHEFU2",
+        "https://discord.com/api/webhooks/1096798394934116403/xa25g0k56x17vH35EaZFGK-ifvWoNULT8WGtJ5BZVz3Bjd8-LTuwXBmtEpY2wwhtJpqG",
         {
           username: "Game Streamer",
           avatar_url:
-            "http://localhost:3000/_nuxt/assets/images/game/game-2p-start.png",
+            "https://shishiodoshi-app-k22f.vercel.app/_nuxt/img/game-4p-start.f825b8e.png",
           content:
             "😎 gamestart!!! \r https://shishiodoshi-app-k22f.vercel.app/_nuxt/img/game-4p-start.f825b8e.png \r Let's join to the game from link below 😎 \r https://shishiodoshi-app-k22f.vercel.app/game/111/",
         }
