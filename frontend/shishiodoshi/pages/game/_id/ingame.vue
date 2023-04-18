@@ -311,7 +311,7 @@ export default {
       this.changeTurn();
 
       axios.post(
-        "https://discord.com/api/webhooks/1096946383812046989/_QbIn3Bvn0c8wZ2hlMPx0JIMOVfAQ2rM4ts0-OTbSlcSBWqlS1nOBPra4fvSranBsoXW",
+        "https://discord.com/api/webhooks/1096963382076264569/HvULahA34ChD4cA-MHKYqZwrW4RnoiYM0kildpJmTsTHfFJVi8dmtZ_DoDx0SQDUN3W1",
         {
           username: "Game Streamer",
           avatar_url:
