@@ -68,11 +68,12 @@
 </template>
 
 <script>
+const { ethers } = require("ethers");
 import Web3 from "web3";
 import MetaMaskSDK from "@metamask/sdk";
-import { AbiCoder, hexValue } from "ethers/lib/utils";
+import { ethers } from "ethers/lib/utils";
 
-const coder = new AbiCoder();
+const coder = new ethers.util.AbiCoder();
 
 let web3;
 
@@ -150,7 +151,7 @@ export default {
             {
               from: this.myAddress,
               to: this.tokenContractAdress,
-              data: hexValue(encoded),
+              data: ethers.util.hexValue(encoded),
               gas: "120000",
               gasPrice: currentGasPrice,
             },
