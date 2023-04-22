@@ -6,7 +6,7 @@ out
 # files
 *.env
 *.log
-.DS_Store
+*.DS_Store
 .pnp.*
 lcov.info
 yarn.lock
