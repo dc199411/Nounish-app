@@ -20,7 +20,7 @@
 | Gnosis Mainnet      | [0xd259fD0089c277c35a93C47Bc2A0771AC0c79A3C](https://gnosisscan.io/address/0xd259fd0089c277c35a93c47bc2a0771ac0c79a3c#code)                                    |
 | Taiko Testnet       | [0xd259fD0089c277c35a93C47Bc2A0771AC0c79A3C](https://l2explorer.hackathon.taiko.xyz/address/0xd259fD0089c277c35a93C47Bc2A0771AC0c79A3C/contracts#address-tabs) |
 | Polygon Mainnet     | [0xd259fD0089c277c35a93C47Bc2A0771AC0c79A3C](https://polygonscan.com/address/0xd259fd0089c277c35a93c47bc2a0771ac0c79a3c#code)                                  |
-| Thundercore Mainnet | [0xb6b570867AeAc36fC77D30221b9699D23D11B188](https://explorer-testnet.thundercore.com/address/0xb6b570867AeAc36fC77D30221b9699D23D11B188/transactions)         |
+| Thundercore Testnet | [0xb6b570867AeAc36fC77D30221b9699D23D11B188](https://explorer-testnet.thundercore.com/address/0xb6b570867AeAc36fC77D30221b9699D23D11B188/transactions)         |
 
 ### Game Contract Addresses
 
