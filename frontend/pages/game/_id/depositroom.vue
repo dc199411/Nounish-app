@@ -68,15 +68,11 @@
 </template>
 
 <script>
-// const Cookie = process.client ? require("js-cookie") : undefined;
-// import MetaMaskSDK from "@metamask/sdk";
 import Web3 from "web3";
+import MetaMaskSDK from "@metamask/sdk";
 import { AbiCoder, hexValue } from "ethers/lib/utils";
 
 const coder = new AbiCoder();
-
-// import { encode } from "@metamask/abi-utils";
-// import { bytesToHex } from "@metamask/utils";
 
 let web3;
 
